@@ -1,0 +1,17 @@
+{% extends "./base.html" %}
+{% block head %}
+    <title>Show @ {{post.location_text}}</title>
+{% endblock %}
+{% block content %}
+<p>
+    {{post.start_date}}
+    @ {{post.location_text}}
+    <span class="u-pullRight">
+    {% if post.ticket_price > 0 %} Only ${{post.ticket_price}} at the door!{% endif %}
+    {% if post.ticket_price == 0 %} Free!{% endif %}
+    </span>
+</p>
+<div>
+    {{post.copy_text | markdown | safe}}
+</div>
+{% endblock %}
