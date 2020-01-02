@@ -4,7 +4,7 @@ from django.contrib import admin
 from .models import Post
 
 class PostAdmin(admin.ModelAdmin):
-    list_display=('slug', 'start_date', 'location_text')
+    list_display=('slug',)
     fieldsets = (
             (None, {
                 'fields': ('slug',),
@@ -12,10 +12,9 @@ class PostAdmin(admin.ModelAdmin):
             }),
             ('deets', {
                 'fields': (
-                    'start_date',
-                    'location_text',
-                    'ticket_price',
-                    'copy_text'
+                    'end_date',
+                    'alternate_text',
+                    'full_size'
                 )
             })
     )
