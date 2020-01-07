@@ -4,10 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+django-debug-toolbar = "*"
 
 [packages]
 django = "*"
 markdown = "*"
+gunicorn = {extras = ["gevent"],version = "*"}
 
 [requires]
 python_version = "3.7"
