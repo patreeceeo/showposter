@@ -10,6 +10,7 @@ django-debug-toolbar = "*"
 django = "*"
 markdown = "*"
 gunicorn = {extras = ["gevent"],version = "*"}
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"

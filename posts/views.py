@@ -11,8 +11,27 @@ class DetailView(generic.DetailView):
     model = Post
     template_name = 'detail.html'
 
+class UploadView(generic.TemplateView):
+    template_name  = 'upload.html'
+
 class CreatePostView(generic.CreateView):
     model = Post
     form_class = PostForm
     template_name = 'post.html'
     success_url = reverse_lazy('list-view')
+
+from rest_framework import serializers
+from .models import RelatedImage
+
+class RelatedImageSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = RelatedImage
+    fields = ('id', 'image')
+
+from rest_framework import viewsets
+from .models import RelatedImage
+
+class RelatedImageAJAXView(viewsets.ModelViewSet):
+  serializer_class = RelatedImageSerializer
+  queryset = RelatedImage.objects.all()
+

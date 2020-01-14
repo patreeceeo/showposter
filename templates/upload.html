@@ -1,0 +1,19 @@
+{% extends "./base.html" %}
+{% block head %}
+    <title>Upload</title>
+{% endblock %}
+{% block content %}
+
+  <form>
+    <label>
+      Choose file
+      <input id="file-input" type='file' hidden accept="image/jpg,image/png,image/gif"/>
+    </label>
+  </form>
+  {% load static  %}
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="{% static "upload.js" %}"></script>
+{% endblock %}
+{% comment %}
+vim: filetype=htmldjango
+{% endcomment %}
