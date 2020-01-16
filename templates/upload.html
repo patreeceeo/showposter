@@ -4,11 +4,13 @@
 {% endblock %}
 {% block content %}
 
-  <form>
+  <form id="upload-form" method="post" enctype="multipart/form-data" action="/api/upload">
     <label>
       Choose file
-      <input id="file-input" type='file' hidden accept="image/jpg,image/png,image/gif"/>
+      <input name="image" type='file' accept="image/jpg,image/png,image/gif"/>
     </label>
+    <input type="submit" value="upload"/>
+    {% csrf_token %}
   </form>
   {% load static  %}
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

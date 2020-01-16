@@ -1,14 +1,16 @@
 
-const input = document.querySelector("#file-input");
+document
+  .querySelector("#upload-form")
+  .addEventListener("submit", listener);
 
-input.addEventListener("change", listener);
+function listener(event) {
+  event.preventDefault();
+  const formData = new FormData(event.target);
 
-function listener() {
-  const file = input.files[0];
   axios.request( {
     method: "post",
     url: "/api/upload",
-    data: file,
+    data: formData,
     onUploadProgress: (p) => {
       console.log(p);
     }

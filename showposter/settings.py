@@ -129,12 +129,6 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-FILE_UPLOAD_HANDLERS = [
-        "posts.upload_handler.PosterUploadHandler",
-        "django.core.files.uploadhandler.MemoryFileUploadHandler",
-        "django.core.files.uploadhandler.TemporaryFileUploadHandler",
-        ]
-
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
@@ -147,3 +141,5 @@ INTERNAL_IPS = [
     '127.0.0.1',
     # ...
 ]
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
