@@ -1,18 +1,27 @@
 {% extends "./base.html" %}
+{% load static  %}
 {% block head %}
     <title>Upload</title>
+    <link rel="stylesheet" href="{% static "upload.css" %}"/>
 {% endblock %}
 {% block content %}
-
   <form id="upload-form" method="post" enctype="multipart/form-data" action="/api/upload">
-    <label>
-      Choose file
-      <input name="image" type='file' accept="image/jpg,image/png,image/gif"/>
+
+    <label class="Button mb">
+      Choose a file
+      <input id="image-input" class="hidden" name="image" type='file' accept="image/jpeg,image/png,image/gif"/>
     </label>
-    <input type="submit" value="upload"/>
+
+    <div class="Scanner mb" id="scanner">
+      <div class="Scanner_beam"></div>
+      <img id="preview-image" class="Preview Preview__out"/>
+    </div>
+
+    <!-- class and value are set by Javascript -->
+    <input class="hidden" id="submit-button" type="submit" value=""/>
+
     {% csrf_token %}
   </form>
-  {% load static  %}
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="{% static "upload.js" %}"></script>
 {% endblock %}

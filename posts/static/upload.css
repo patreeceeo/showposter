@@ -1,0 +1,74 @@
+
+.Preview {
+  max-height: 6in;
+  display: block;
+  margin: 0 auto;
+  transition: transform 1s, opacity 1s;
+
+  position: relative;
+  z-index: 0;
+
+  filter: brightness(calc((var(--scanner-is-on) * 0.3) + ((1 - var(--scanner-is-on)) * 1)));
+}
+.Preview__out {
+  transform: translateY(20%);
+  opacity: 0;
+}
+.Preview__in {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.Scanner {
+  --scanner-is-on:0;
+  --scanner-progress:0;
+  --scanner-padding: 1em;
+  padding: var(--scanner-padding);
+  background-color: #333;
+
+  position: relative;
+}
+.Scanner_beam {
+  position: absolute;
+  top: var(--scanner-progress);
+  left: var(--scanner-padding);
+  right: var(--scanner-padding);
+  transform: translateY(-50%);
+
+  opacity: var(--scanner-is-on);
+  filter: blur(2px);
+  background-color: white;
+
+  height: 7px;
+  z-index: 1;
+}
+
+.Button {
+  cursor: pointer;
+  border: 2px solid #333;
+  border-radius: 4px;
+  padding: 1em;
+  display: block;
+  width: 100%;
+  text-align: center;
+
+  appearance: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.Button[disabled] {
+  cursor: default;
+  border-color: grey;
+  color: grey;
+}
+
+.mb {
+  margin-bottom: 1em;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
