@@ -11,6 +11,8 @@ django = "*"
 markdown = "*"
 gunicorn = {extras = ["gevent"],version = "*"}
 djangorestframework = "*"
+uritemplate = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"
