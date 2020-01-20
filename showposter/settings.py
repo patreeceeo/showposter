@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+APPEND_SLASH=False
 
 # Application definition
 
@@ -143,3 +144,4 @@ INTERNAL_IPS = [
 ]
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
+
