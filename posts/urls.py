@@ -1,16 +1,16 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from . import views
+from posts.views import ui, api
 
 rest_router = DefaultRouter(trailing_slash=False)
-rest_router.register('api/upload', views.UploadedImageRESTView)
+rest_router.register('upload', api.UploadedImageRESTView)
 
 urlpatterns = [
-    path('', views.ListView.as_view(), name='list-view'),
-    path('s/<slug>', views.DetailView.as_view(), name='detail-view'),
-    path('upload', views.UploadView.as_view(), name='upload-view'),
-    path('post', views.CreatePostView.as_view(), name='add-view'),
+    path('', ui.ListView.as_view(), name='list-view'),
+    path('s/<slug>', ui.DetailView.as_view(), name='detail-view'),
+    path('upload', ui.UploadView.as_view(), name='upload-view'),
+    path('post', ui.CreatePostView.as_view(), name='add-view'),
 
-    path('', include(rest_router.urls))
+    path('api/', include(rest_router.urls))
 ]
 

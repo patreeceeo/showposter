@@ -1,7 +1,7 @@
 from django.views import generic
 from django.urls import reverse_lazy
-from .models import Post
-from .forms import PostForm
+from posts.models import Post
+from posts.forms import PostForm
 
 class ListView(generic.ListView):
     model = Post
@@ -19,19 +19,4 @@ class CreatePostView(generic.CreateView):
     form_class = PostForm
     template_name = 'post.html'
     success_url = reverse_lazy('list-view')
-
-from rest_framework import serializers
-from .models import UploadedImage
-
-class UploadedImageSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = UploadedImage
-    fields = ('id', 'image')
-
-from rest_framework import viewsets
-from .models import UploadedImage
-
-class UploadedImageRESTView(viewsets.ModelViewSet):
-  serializer_class = UploadedImageSerializer
-  queryset = UploadedImage.objects.all()
 
