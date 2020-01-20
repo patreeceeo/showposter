@@ -21,17 +21,17 @@ class CreatePostView(generic.CreateView):
     success_url = reverse_lazy('list-view')
 
 from rest_framework import serializers
-from .models import RelatedImage
+from .models import UploadedImage
 
-class RelatedImageSerializer(serializers.ModelSerializer):
+class UploadedImageSerializer(serializers.ModelSerializer):
   class Meta:
-    model = RelatedImage
+    model = UploadedImage
     fields = ('id', 'image')
 
 from rest_framework import viewsets
-from .models import RelatedImage
+from .models import UploadedImage
 
-class RelatedImageAJAXView(viewsets.ModelViewSet):
-  serializer_class = RelatedImageSerializer
-  queryset = RelatedImage.objects.all()
+class UploadedImageRESTView(viewsets.ModelViewSet):
+  serializer_class = UploadedImageSerializer
+  queryset = UploadedImage.objects.all()
 

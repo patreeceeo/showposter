@@ -20,7 +20,7 @@ class Post(models.Model):
         from django.urls import reverse
         return reverse('detail-view', kwargs={'slug': self.slug})
 
-class RelatedImage(models.Model):
+class UploadedImage(models.Model):
   image = models.ImageField(upload_to='uploads/')
 
   def __unicode__(self):
