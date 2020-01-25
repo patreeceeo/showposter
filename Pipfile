@@ -13,6 +13,7 @@ gunicorn = {extras = ["gevent"],version = "*"}
 djangorestframework = "*"
 uritemplate = "*"
 pyyaml = "*"
+django-cleanup = "*"
 
 [requires]
 python_version = "3.7"

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'rest_framework',
+    # Cleans up filesystem whenever FileFields and ImageFields are deleted
+    'django_cleanup',
     'posts'
 ]
 
