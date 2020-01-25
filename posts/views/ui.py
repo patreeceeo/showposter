@@ -14,6 +14,9 @@ class DetailView(generic.DetailView):
 class UploadView(generic.TemplateView):
     template_name  = 'upload.html'
 
+class GalleryView(generic.TemplateView):
+    template_name  = 'gallery.html'
+
 class CreatePostView(generic.CreateView):
     model = Post
     form_class = PostForm

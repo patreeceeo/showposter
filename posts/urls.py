@@ -11,6 +11,8 @@ urlpatterns = [
     path('upload', ui.UploadView.as_view(), name='upload-view'),
     path('post', ui.CreatePostView.as_view(), name='add-view'),
 
+    path('gallery', ui.GalleryView.as_view(), name='gallery-view'),
+
     path('api/', include(rest_router.urls))
 ]
 

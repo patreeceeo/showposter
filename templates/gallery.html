@@ -1,0 +1,14 @@
+{% extends "./base.html" %}
+{% load static  %}
+{% block head %}
+    <title>Gallery</title>
+{% endblock %}
+{% block content %}
+  <div id="list"></div>
+  <button id="bulk-delete-button"></div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="{% static "gallery.js" %}"></script>
+{% endblock %}
+{% comment %}
+vim: filetype=htmldjango
+{% endcomment %}

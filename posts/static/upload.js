@@ -72,7 +72,7 @@ function handleSubmit(event) {
   submitButton.setAttribute("disabled", true);
   submitButton.setAttribute("value", decideValueForSubmitButton());
 
-  axios.request( {
+  axios.request({
     method: "post",
     url: "/api/upload",
     data: formData,
@@ -81,7 +81,8 @@ function handleSubmit(event) {
       scanner.style.setProperty("--scanner-progress", progress);
     }
   }).then (() => {
-      scanner.style.setProperty("--scanner-progress", '100%');
-  scanner.style.setProperty("--scanner-is-on", '0');
+    scanner.style.setProperty("--scanner-progress", '100%');
+    scanner.style.setProperty("--scanner-is-on", '0');
   })
 }
+
