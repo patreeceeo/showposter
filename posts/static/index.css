@@ -64,6 +64,16 @@
   color: grey;
 }
 
+.ImageButton {
+  height: 4in;
+  width: 4in;
+  max-width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mb {
   margin-bottom: 1em;
 }

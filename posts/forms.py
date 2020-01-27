@@ -6,4 +6,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['end_date', 'alternate_text', 'full_size']
+        fields = ['image', 'end_date', 'alternate_text', 'full_size']
+        widgets = {
+            'image': forms.HiddenInput
+        }

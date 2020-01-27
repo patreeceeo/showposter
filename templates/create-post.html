@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+{% load static  %}
+{% block head %}
+    <title>New poster</title>
+    <link rel="stylesheet" href="{% static "index.css" %}"/>
+{% endblock %}
+{% block content %}
+<h1>New poster</h1>
+<div class="hidden" id="upload-form-container">
+  {% include "upload.html" %}
+</div>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <p>
+    <label for="synthetic-image-input">Image:</label>
+    <button class="Button ImageButton" id="synthetic-image-input">Click to add image</button>
+  </p>
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+<script src="{% static "create-post.js" %}"></script>
+{% endblock content %}
+{% comment %}
+vim: filetype=htmldjango
+{% endcomment %}
