@@ -20,7 +20,7 @@ class PostAdmin(admin.ModelAdmin):
     )
 
 class UploadedImageAdmin(admin.ModelAdmin):
-    list_display=('image',)
+    list_display=('image', 'date_created')
 
 admin.site.register(Post, PostAdmin)
 admin.site.register(UploadedImage, UploadedImageAdmin)
