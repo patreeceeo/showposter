@@ -1,4 +1,8 @@
-let uploadInProgress = false;
+const STATE_INIT = 0;
+const STATE_PROCESSING = 1;
+const STATE_COMPLETE = 2;
+
+let uploadState = STATE_INIT;
 
 const imageInput = document
   .querySelector("#image-input");
@@ -49,7 +53,7 @@ function decideClassListForSubmitButton() {
 }
 
 function decideValueForSubmitButton() {
-  return uploadInProgress ? "Uploading…" : imageInput.files[0] ? `Upload ${imageInput.files[0].name}` : "";
+  return [imageInput.files[0] ? `Upload ${imageInput.files[0].name}` : "", "Uploading...", "Complete!"][uploadState];
 }
 
 document
@@ -64,11 +68,11 @@ function handleSubmit(event) {
 
   scanner.style.setProperty("--scanner-is-on", '1');
 
-  if(uploadInProgress) {
+  if(uploadState === STATE_PROCESSING) {
     return;
   }
 
-  uploadInProgress = true;
+  uploadState = STATE_PROCESSING;
   submitButton.setAttribute("disabled", true);
   submitButton.setAttribute("value", decideValueForSubmitButton());
 
@@ -83,6 +87,8 @@ function handleSubmit(event) {
   }).then (() => {
     scanner.style.setProperty("--scanner-progress", '100%');
     scanner.style.setProperty("--scanner-is-on", '0');
+    uploadState = STATE_COMPLETE;
+    submitButton.setAttribute("value", decideValueForSubmitButton());
   })
 }
 

@@ -21,7 +21,7 @@ class Post(models.Model):
     slug = models.CharField(max_length=24, unique=True, validators=[validate_slug], default=get_default_slug)
     end_date = models.DateField()
     alternate_text = models.TextField()
-    full_size = models.ImageField(upload_to='images/',  default='images/grimpizza.jpg')
+    full_size = models.ImageField(upload_to='images/', default='images/grimpizza.jpg')
 
     def get_absolute_url(self):
         from django.urls import reverse

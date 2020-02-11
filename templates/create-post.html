@@ -6,19 +6,36 @@
 {% endblock %}
 {% block content %}
 <h1>New poster</h1>
-<div class="hidden" id="upload-form-container">
-  {% include "upload.html" %}
-</div>
+
+<form id="upload-form" method="post" enctype="multipart/form-data" action="/api/upload">
+  {% csrf_token %}
+  <div class="ImageUploadForm flex flexColumn flexCenter">
+    <label class="Button mb">
+      Choose a file
+      <input id="image-input" class="hidden" name="image" type='file' accept="image/jpeg,image/png,image/gif"/>
+    </label>
+    <div class="offsetParent">
+      <div class="flex flexCenter flexChildGrow fullHeight fullWidth">
+        <div class="PlaceholderText">post no bills</div>
+      </div>
+      <div class="Scanner mb fullHeight fullWidth" id="scanner">
+        <div class="Scanner_beam"></div>
+        <img id="preview-image" class="Preview Preview__out"/>
+      </div>
+    </div>
+
+    <!-- class and value are set by Javascript -->
+    <input class="hidden" id="submit-button" type="submit" value=""/>
+
+  </div>
+</form>
 <form method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <p>
-    <label for="synthetic-image-input">Image:</label>
-    <button class="Button ImageButton" id="synthetic-image-input">Click to add image</button>
-  </p>
   {{ form.as_p }}
   <button type="submit">Save</button>
 </form>
-<script src="{% static "create-post.js" %}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="module" src="{% static "index.js" %}"></script>
 {% endblock content %}
 {% comment %}
 vim: filetype=htmldjango
