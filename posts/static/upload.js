@@ -84,11 +84,12 @@ function handleSubmit(event) {
       const progress = `${100 * (event.loaded / event.total)}%`;
       scanner.style.setProperty("--scanner-progress", progress);
     }
-  }).then (() => {
+  }).then ((response) => {
     scanner.style.setProperty("--scanner-progress", '100%');
     scanner.style.setProperty("--scanner-is-on", '0');
     uploadState = STATE_COMPLETE;
     submitButton.setAttribute("value", decideValueForSubmitButton());
+    document.querySelector("#id_image").setAttribute("value", response.data.id);
   })
 }
 

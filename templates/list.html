@@ -13,10 +13,7 @@
     <tbody class="Table-body">
         {% for post in post_list %}
         <tr class="Table-row">
-            <td class="Table-cell">{{ post.start_date }}</td>
-            <td class="Table-cell">${{ post.ticket_price }}</td>
-            <td class="Table-cell Table-cell--wide">{{ post.location_text }}</td>
-            <td class="Table-cell"><a href="{{ post.get_absolute_url }}">deets</a></td>
+          <td class="Table-cell"><img src="media/{{ post.image.image }}"/></td>
         </tr>
         {% endfor %}
     </tbody>

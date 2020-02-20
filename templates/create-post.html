@@ -14,11 +14,11 @@
       Choose a file
       <input id="image-input" class="hidden" name="image" type='file' accept="image/jpeg,image/png,image/gif"/>
     </label>
-    <div class="offsetParent">
-      <div class="flex flexCenter flexChildGrow fullHeight fullWidth">
+    <div>
+      <div class="flex flexCenter flexChildGrow">
         <div class="PlaceholderText">post no bills</div>
       </div>
-      <div class="Scanner mb fullHeight fullWidth" id="scanner">
+      <div class="Scanner mb" id="scanner">
         <div class="Scanner_beam"></div>
         <img id="preview-image" class="Preview Preview__out"/>
       </div>
@@ -34,7 +34,7 @@
   {{ form.as_p }}
   <button type="submit">Save</button>
 </form>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{% static "axios.js" %}"></script>
 <script type="module" src="{% static "index.js" %}"></script>
 {% endblock content %}
 {% comment %}

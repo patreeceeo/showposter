@@ -14,6 +14,8 @@ djangorestframework = "*"
 uritemplate = "*"
 pyyaml = "*"
 django-cleanup = "*"
+django-debug-toolbar = "*"
+pillow = "*"
 
 [requires]
 python_version = "3.7"
