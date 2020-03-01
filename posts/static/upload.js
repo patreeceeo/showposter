@@ -1,95 +1,82 @@
-const STATE_INIT = 0;
-const STATE_PROCESSING = 1;
-const STATE_COMPLETE = 2;
+const STATE_INIT = 0
+const STATE_PROCESSING = 1
+const STATE_COMPLETE = 2
 
-let uploadState = STATE_INIT;
+let uploadState = STATE_INIT
 
+const uploadForm = document
+  .querySelector("#upload-form")
 const imageInput = document
-  .querySelector("#image-input");
-
-loadImageSrcFromInput(imageInput);
-
-imageInput
-  .addEventListener("change", handleChangeFile);
-
-function handleChangeFile(event) {
-  loadImageSrcFromInput(event.target)
-  submitButton.className = decideClassListForSubmitButton();
-  submitButton.setAttribute("value", decideValueForSubmitButton());
-}
+  .querySelector("#image-input")
+const previewImage = document
+  .querySelector("#preview-image")
+const imagePlaceholder = document
+  .querySelector("#image-placeholder")
+const uploadProgressDiv = document
+  .querySelector("#upload-progress")
+const scanner = document
+  .querySelector("#scanner")
 
 function loadImageSrcFromInput(input) {
-  if(input.files[0]) {
-    loadImageSrc(input.files[0], setPreviewImageSrc)
-  }
+  loadImageSrc(input.files[0], setPreviewImageSrc)
+  imagePlaceholder.className = "hidden"
 }
 
 function loadImageSrc(file, callback) {
-  const reader = new FileReader();
+  const reader = new FileReader()
 
   const handleLoad = (event) => {
-    callback(event.target.result);
-    reader.removeEventListener("load", handleLoad);
+    callback(event.target.result)
+    reader.removeEventListener("load", handleLoad)
   }
 
   reader.addEventListener("load", handleLoad)
   reader.readAsDataURL(file)
 }
 
-const previewImage = document.querySelector("#preview-image");
-
 function setPreviewImageSrc(src) {
-  previewImage.setAttribute("src", src);
-  previewImage.className = "Preview Preview__in";
+  previewImage.setAttribute("src", src)
+  previewImage.className = "Preview Preview__in"
 }
 
-const submitButton = document.querySelector("#submit-button");
-
-submitButton.className = decideClassListForSubmitButton();
-submitButton.setAttribute("value", decideValueForSubmitButton());
-
-function decideClassListForSubmitButton() {
-  return imageInput.files[0] ? "Button mb" : "hidden";
+function handleFileSelected(event) {
+  uploadImageFromInput(event.target)
 }
 
-function decideValueForSubmitButton() {
-  return [imageInput.files[0] ? `Upload ${imageInput.files[0].name}` : "", "Uploading...", "Complete!"][uploadState];
-}
+function uploadImageFromInput(input) {
+  const formData = new FormData(uploadForm)
 
-document
-  .querySelector("#upload-form")
-  .addEventListener("submit", handleSubmit);
+  loadImageSrcFromInput(input)
 
-const scanner = document.querySelector("#scanner")
-
-function handleSubmit(event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-
-  scanner.style.setProperty("--scanner-is-on", '1');
+  scanner.style.setProperty("--scanner-is-on", '1')
 
   if(uploadState === STATE_PROCESSING) {
-    return;
+    return
   }
 
-  uploadState = STATE_PROCESSING;
-  submitButton.setAttribute("disabled", true);
-  submitButton.setAttribute("value", decideValueForSubmitButton());
+  uploadState = STATE_PROCESSING
 
   axios.request({
     method: "post",
     url: "/api/upload",
     data: formData,
     onUploadProgress: (event) => {
-      const progress = `${100 * (event.loaded / event.total)}%`;
-      scanner.style.setProperty("--scanner-progress", progress);
+      const progress = `${100 * (event.loaded / event.total)}%`
+      scanner.style.setProperty("--scanner-progress", progress)
+      uploadProgressDiv.innerHTML = `${progress} uploaded`
     }
   }).then ((response) => {
-    scanner.style.setProperty("--scanner-progress", '100%');
-    scanner.style.setProperty("--scanner-is-on", '0');
-    uploadState = STATE_COMPLETE;
-    submitButton.setAttribute("value", decideValueForSubmitButton());
-    document.querySelector("#id_image").setAttribute("value", response.data.id);
+    scanner.style.setProperty("--scanner-progress", '100%')
+    scanner.style.setProperty("--scanner-is-on", '0')
+    uploadState = STATE_COMPLETE
+    document.querySelector("#uploaded-image-id-input").setAttribute("value", response.data.id)
   })
 }
 
+if(imageInput.files[0]) {
+  uploadImageFromInput(imageInput);
+}
+
+uploadForm.addEventListener("submit", (event) => event.preventDefault())
+
+imageInput.addEventListener("change", handleFileSelected)

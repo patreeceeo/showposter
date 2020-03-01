@@ -4,35 +4,42 @@
     <title>New poster</title>
 {% endblock %}
 {% block content %}
-<h1>New poster</h1>
+<div class="Column__wide">
+  <h1>New poster</h1>
 
-<form id="upload-form" method="post" enctype="multipart/form-data" action="/api/upload">
-  {% csrf_token %}
-  <div class="ImageUploadForm flex flexColumn flexCenter">
-    <label class="Button mb">
-      Choose a file
-      <input id="image-input" class="hidden" name="image" type='file' accept="image/jpeg,image/png,image/gif"/>
-    </label>
-    <div>
-      <div class="flex flexCenter flexChildGrow">
-        <div class="PlaceholderText">post no bills</div>
-      </div>
+  <form id="upload-form" method="post" enctype="multipart/form-data" action="/api/upload">
+    {% csrf_token %}
+    <div class="ImageUploadForm flex flexColumn flexCenter">
       <div class="Scanner mb" id="scanner">
         <div class="Scanner_beam"></div>
         <img id="preview-image" class="Preview Preview__out"/>
+        <div id="image-placeholder" class="ImagePlaceholder">No image yet.</div>
       </div>
+      <div id="upload-progress" class="StatusBar"></div>
+      <label class="Button mb">
+        Choose a file
+        <input id="image-input" class="hidden" name="image" type='file' accept="image/jpeg,image/png,image/gif"/>
+      </label>
+      <noscript>
+        <input class="Button" id="submit-button" type="submit" value="Upload Image"/>
+      </noscript>
     </div>
-
-    <!-- class and value are set by Javascript -->
-    <input class="hidden" id="submit-button" type="submit" value=""/>
-
-  </div>
-</form>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
+  </form>
+  <form class="Form" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>
+      <span class="Form_label">Date of show</span>
+      <input type="text" name="end_date" required>
+    </label>
+    <label>
+      <span class="Form_label">Description</span>
+      <textarea class="Form_textarea" name="alternate_text" required aria-described-by="form_alternate_text_description"></textarea>
+    </label>
+    <span class="Form_inputDescription" id="form_alternate_text_description">This is a place to type out any important info on the poster, which is a good idea so that everyone can access it. And whatever else you want to write.</span>
+    <input type="hidden" name="image" id="uploaded-image-id-input">
+    <button type="submit">Save</button>
+  </form>
+</div>
 <script src="{% static "axios.js" %}"></script>
 <script type="module" src="{% static "index.js" %}"></script>
 {% endblock content %}
