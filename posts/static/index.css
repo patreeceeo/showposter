@@ -171,6 +171,13 @@ a  {
   width: 100%;
 }
 
+.Form_labelledInput > input + .Form_inputErrorMessage {
+  display: none;
+}
+.Form_labelledInput > input:invalid + .Form_inputErrorMessage {
+  display: block;
+  color: darkred;
+}
 
 .mb {
   margin-bottom: 1em;

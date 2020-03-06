@@ -27,13 +27,14 @@
   </form>
   <form class="Form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <label>
+    <label class="Form_labelledInput">
       <span class="Form_label">Date of show</span>
-      <input type="text" name="end_date" required>
+      <input type="date" name="end_date" required pattern="\d{4}-\d{2}-\d{2}" aria-errormessage="form_date_error_message">
+      <span class="Form_inputErrorMessage" id="form_date_error_message">Please write the date in the form of MMMM-DD-YY</span>
     </label>
     <label>
       <span class="Form_label">Description</span>
-      <textarea class="Form_textarea" name="alternate_text" required aria-described-by="form_alternate_text_description"></textarea>
+      <textarea class="Form_textarea" name="alternate_text" required aria-describedby="form_alternate_text_description"></textarea>
     </label>
     <span class="Form_inputDescription" id="form_alternate_text_description">This is a place to type out any important info on the poster, which is a good idea so that everyone can access it. And whatever else you want to write.</span>
     <input type="hidden" name="image" id="uploaded-image-id-input">
@@ -41,7 +42,7 @@
   </form>
 </div>
 <script src="{% static "axios.js" %}"></script>
-<script type="module" src="{% static "index.js" %}"></script>
+<script type="module" src="{% static "upload.js" %}"></script>
 {% endblock content %}
 {% comment %}
 vim: filetype=htmldjango
