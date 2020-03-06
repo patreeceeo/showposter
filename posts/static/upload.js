@@ -58,7 +58,7 @@ function uploadImageFromInput(input) {
 
   axios.request({
     method: "post",
-    url: "/api/upload",
+    url: "/api/uploaded_image",
     data: formData,
     onUploadProgress: (event) => {
       const progress = `${100 * (event.loaded / event.total)}%`
@@ -70,7 +70,14 @@ function uploadImageFromInput(input) {
     scanner.style.setProperty("--scanner-is-on", '0')
     uploadState = STATE_COMPLETE
     document.querySelector("#uploaded-image-id-input").setAttribute("value", response.data.id)
-  })
+    return axios.get("/api/unused_uploaded_image")
+  }).then((response) => {
+    axios.request({
+      method: "delete",
+      url: "/api/bulk_uploaded_image",
+      data: response.data.map(({id}) => id)
+    });
+  });
 }
 
 if(imageInput.files[0]) {
