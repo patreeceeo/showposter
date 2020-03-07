@@ -10,11 +10,11 @@ def get_default_slug():
     return slug
 
 class UploadedImage(models.Model):
-  image = models.ImageField(upload_to='uploads/')
-  date_created = models.DateTimeField(default=timezone.now)
+    image = models.ImageField(upload_to='uploads/')
+    date_created = models.DateTimeField(default=timezone.now)
 
-  def __unicode__(self):
-    return self.image.url
+    def __unicode__(self):
+        return self.image.url
 
 class Post(models.Model):
     image = models.ForeignKey(UploadedImage, on_delete=models.CASCADE)

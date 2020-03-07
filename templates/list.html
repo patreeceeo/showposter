@@ -5,9 +5,9 @@
 {% block content %}
 <ul class="PostGrid">
   {% for post in post_list %}
-  <li class="PostGrid_item"><img src="media/{{ post.image.image }}"/></li>
+  <li class="PostGrid_item"><a href="{% url 'detail-view' post.slug %}"><img src="/media/{{ post.image.image }}"/></a></li>
   {% endfor %}
-  <li class="PostGrid_item"><a href="/create-post">add</a></li>
+  <li class="PostGrid_item"><a href="{% url 'create-post' %}">add</a></li>
 </ul>
 {% endblock %}
 {% comment %}
