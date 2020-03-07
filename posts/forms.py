@@ -6,7 +6,8 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ['image', 'end_date', 'alternate_text']
+        exclude = [ 'created_by' ]
+        fields = ['image', 'date_of_show', 'alternate_text']
         widgets = {
             'image': forms.HiddenInput
         }

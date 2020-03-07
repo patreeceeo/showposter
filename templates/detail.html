@@ -1,13 +1,15 @@
-{% extends "./base.html" %}
+{% extends "./chrome.html" %}
 {% block head %}
     <title>Show</title>
 {% endblock %}
 {% block content %}
+<img src="/media/{{ post.image.image }}"/>
+<p>{{post.alternate_text | markdown | safe}}</p>
 <p>
-  <img src="/media/{{ post.image.image }}"/>
-  <p>{{post.alternate_text}}</p>
-</p>
-<div>
-    {{post.copy_text | markdown | safe}}
-</div>
+  Created by
+  {% if post.created_by != None %}
+  {{post.created_by.username}}</p>
+  {% else %}
+  anonymous ;)
+  {% endif %}
 {% endblock %}

@@ -1,0 +1,16 @@
+{% extends "./chrome.html" %}
+{% block head %}
+<title>Logged out</title>
+{% endblock %}
+{% block content %}
+<p>
+You're now logged out.
+</p>
+
+<p>
+<a href="{% url 'list-view' %}">go home</a>
+</p>
+{% endblock %}
+{% comment %}
+vim: filetype=htmldjango
+{% endcomment %}

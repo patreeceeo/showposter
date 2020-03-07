@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "./chrome.html" %}
 {% block head %}
     <title>All shows</title>
 {% endblock %}
@@ -7,7 +7,9 @@
   {% for post in post_list %}
   <li class="PostGrid_item"><a href="{% url 'detail-view' post.slug %}"><img src="/media/{{ post.image.image }}"/></a></li>
   {% endfor %}
-  <li class="PostGrid_item"><a href="{% url 'create-post' %}">add</a></li>
+  {% if user.is_authenticated %}
+    <li class="PostGrid_item"><a href="{% url 'create-post' %}">add</a></li>
+  {% endif %}
 </ul>
 {% endblock %}
 {% comment %}

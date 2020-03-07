@@ -1,0 +1,13 @@
+{% extends "./base.html" %}
+{% block chrome %}
+{% if user.is_authenticated %}
+Logged in as {{user.username}}. <a href="{% url 'logout' %}">logout</a>
+{% else %}
+<a href="{% url 'login' %}">login</a>
+{% endif %}
+{% block content %}
+{% endblock %}
+{% endblock %}
+{% comment %}
+vim: filetype=htmldjango
+{% endcomment %}

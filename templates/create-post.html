@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "./chrome.html" %}
 {% load static  %}
 {% block head %}
     <title>New poster</title>
@@ -29,7 +29,7 @@
     {% csrf_token %}
     <label class="Form_labelledInput">
       <span class="Form_label">Date of show</span>
-      <input type="date" name="end_date" required pattern="\d{4}-\d{2}-\d{2}" aria-errormessage="form_date_error_message">
+      <input type="date" name="date_of_show" required pattern="\d{4}-\d{2}-\d{2}" aria-errormessage="form_date_error_message">
       <span class="Form_inputErrorMessage" id="form_date_error_message">Please write the date in the form of MMMM-DD-YY</span>
     </label>
     <label>

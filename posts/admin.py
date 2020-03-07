@@ -12,9 +12,8 @@ class PostAdmin(admin.ModelAdmin):
             }),
             ('deets', {
                 'fields': (
-                    'end_date',
+                    'date_of_show',
                     'alternate_text',
-                    'full_size'
                 )
             })
     )
