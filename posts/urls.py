@@ -8,8 +8,8 @@ rest_router.register('uploaded_image', api.UploadedImageView)
 rest_router.register('unused_uploaded_image', api.UnusedUploadedImageView)
 
 urlpatterns = [
-    path('accounts/login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('accounts/login', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
+    path('accounts/logout', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
 
     path('', ui.ListView.as_view(), name='list-view'),
     path('post/<slug>', ui.DetailView.as_view(), name='detail-view'),
