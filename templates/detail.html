@@ -12,4 +12,22 @@
   {% else %}
   anonymous ;)
   {% endif %}
+</p>
+<p>
+  {% if post.created_by == user %}
+  <form method="post" action="{% url 'delete-post' pk=post.pk %}" id="delete_form">
+    {% csrf_token %}
+    <input type="submit" value="delete">
+  </form>
+  {% endif %}
+</p>
+{% load static  %}
+<script src="{% static "axios.js" %}"></script>
+<script>
+  window.SUCCESS_URL = "{% url 'list-view' %}";
+</script>
+<script type="module" src="{% static "detail.js" %}"></script>
 {% endblock %}
+{% comment %}
+vim: filetype=htmldjango
+{% endcomment %}

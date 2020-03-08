@@ -28,3 +28,7 @@ class CreatePostView(LoginRequiredMixin, generic.CreateView):
         post.save()
         return super().form_valid(form)
 
+class DeletePostView(LoginRequiredMixin, generic.DeleteView):
+    model = Post
+    template_name = 'post_confirm_delete.html'
+    success_url = reverse_lazy('list-view')
