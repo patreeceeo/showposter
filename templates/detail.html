@@ -1,26 +1,32 @@
 {% extends "./chrome.html" %}
 {% block head %}
-    <title>Show</title>
+<title>Show</title>
 {% endblock %}
 {% block content %}
-<img src="/media/{{ post.image.image }}"/>
-<p>{{post.alternate_text | markdown | safe}}</p>
-<p>
-  Created by
-  {% if post.created_by != None %}
-  {{post.created_by.username}}</p>
-  {% else %}
-  anonymous ;)
-  {% endif %}
-</p>
-<p>
-  {% if post.created_by == user %}
-  <form method="post" action="{% url 'delete-post' pk=post.pk %}" id="delete_form">
-    {% csrf_token %}
-    <input type="submit" value="delete">
-  </form>
-  {% endif %}
-</p>
+<div class="PostDetailPage">
+  <div class="PostDetailPage_inner">
+    <img src="/media/{{ post.image.image }}"/>
+    <p>{{post.alternate_text | markdown | safe}}</p>
+    {% if post.created_by == user %}
+    <p>
+      This is your poster.
+    </p>
+    <form method="post" action="{% url 'delete-post' pk=post.pk %}" id="delete_form">
+      {% csrf_token %}
+      <input class="Button" type="submit" value="delete poster">
+    </form>
+    {% else %}
+    <p>
+    Posted by
+    {% if post.created_by != None %}
+    {{post.created_by.username}}</p>
+    {% else %}
+    anonymous ;)
+    {% endif %}
+    </p>
+    {% endif %}
+  </div>
+</div>
 {% load static  %}
 <script src="{% static "axios.js" %}"></script>
 <script>

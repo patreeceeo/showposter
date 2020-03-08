@@ -59,9 +59,43 @@ body {
   --post-image-width: 100%;
 }
 
-.Column__wide {
-  max-width: 860px;
+.Chrome {
+  max-width: 9in;
   margin: 0 auto;
+  margin-bottom: 2rem;
+
+  display: flex;
+  flex-direction: row;
+}
+.Chrome_right {
+  flex: 1 1 auto;
+  text-align: right;
+}
+
+.Content {
+  max-width: 9in;
+  margin: 0 auto;
+
+  margin-bottom: 2rem;
+}
+
+.PostDetailPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 2rem;
+}
+.PostDetailPage_inner {
+  display: inline-block;
+}
+.PostDetailPage .PostDetailPage_poster {
+  object-fit: none;
+}
+.PostDetailPage img,
+.PostDetailPage p {
+  margin-bottom: 1rem;
 }
 
 a  {
@@ -139,17 +173,45 @@ a  {
   align-items: center;
 }
 
-.PostGrid {
+
+.PostList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-.PostGrid .PostGrid_item {
-  width: calc((80vw / 5) * (2/3));
-  height: calc((80vw / 3) * (2/3));
-  margin: calc((80vw / 3) * (1/3)) calc((80vw / 5) * (1/3));
+@media(min-width: 10in) {
+  .PostList {
+    max-width: 9in;
+    margin: 0 auto;
+  }
+}
+@media(max-width: 10in) {
+  .PostList {
+    max-width: 4in;
+    margin: 0 auto;
+  }
+}
+.PostList .PostList_item {
   overflow: hidden;
+}
+@media(min-width: 10in) {
+  .PostList .PostList_item {
+    width: 2in;
+    height: 3.2in;
+    margin: 0.5in;
+  }
+}
+@media(max-width: 10in) {
+  .PostList .PostList_item {
+    margin: 0.5in 0;
+  }
+}
+
+.PostList .PostList_item a {
+  display: block;
+}
+.PostList .PostList_item img {
+  max-width: 100%;
 }
 
 .StatusBar {
@@ -171,6 +233,10 @@ a  {
   width: 100%;
 }
 
+.Form_labelledInput {
+  margin-bottom: 1rem;
+  display: block;
+}
 .Form_labelledInput > input + .Form_inputErrorMessage {
   display: none;
 }

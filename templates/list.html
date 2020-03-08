@@ -3,12 +3,14 @@
     <title>All shows</title>
 {% endblock %}
 {% block content %}
-<ul class="PostGrid">
+<ul class="PostList">
   {% for post in post_list %}
-  <li class="PostGrid_item"><a href="{% url 'detail-view' post.slug %}"><img src="/media/{{ post.image.image }}"/></a></li>
+  <li class="PostList_item"><a href="{% url 'detail-view' post.slug %}"><img src="/media/{{ post.image.image }}"/></a></li>
+  {% empty %}
+  Nothing to show
   {% endfor %}
   {% if user.is_authenticated %}
-    <li class="PostGrid_item"><a href="{% url 'create-post' %}">add</a></li>
+    <li class="PostList_item"><a href="{% url 'create-post' %}">add!</a></li>
   {% endif %}
 </ul>
 {% endblock %}

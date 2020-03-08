@@ -1,10 +1,17 @@
 {% extends "./base.html" %}
 {% block chrome %}
-{% if user.is_authenticated %}
-Logged in as {{user.username}}. <a href="{% url 'logout' %}">logout</a>
-{% else %}
-<a href="{% url 'login' %}">login</a>
-{% endif %}
+<div class="Chrome">
+  <div class="Chrome_left">
+    <a href="{% url 'list-view' %}">Home</a>
+  </div>
+  <div class="Chrome_right">
+    {% if user.is_authenticated %}
+    Logged in as {{user.username}}. <a href="{% url 'logout' %}">logout</a>
+    {% else %}
+    <a href="{% url 'login' %}">login</a>
+    {% endif %}
+  </div>
+</div>
 {% block content %}
 {% endblock %}
 {% endblock %}

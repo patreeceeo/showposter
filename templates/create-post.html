@@ -4,7 +4,7 @@
     <title>New poster</title>
 {% endblock %}
 {% block content %}
-<div class="Column__wide">
+<div class="Content">
   <h1>New poster</h1>
 
   <form id="upload-form" method="post" enctype="multipart/form-data" action="/api/upload">
@@ -32,13 +32,13 @@
       <input type="date" name="date_of_show" required pattern="\d{4}-\d{2}-\d{2}" aria-errormessage="form_date_error_message">
       <span class="Form_inputErrorMessage" id="form_date_error_message">Please write the date in the form of MMMM-DD-YY</span>
     </label>
-    <label>
-      <span class="Form_label">Description</span>
-      <textarea class="Form_textarea" name="alternate_text" required aria-describedby="form_alternate_text_description"></textarea>
+    <label class="Form_labelledInput">
+      <span class="Form_label">Description and more details</span>
+      <textarea class="Form_textarea" name="alternate_text" required aria-describedby="form_alternate_text_description" placeholder="Metaphysical beard with Krokadile tears at The Library. All ages. $20 at the door."></textarea>
+      <span class="Form_inputDescription" id="form_alternate_text_description">e.g. who, where, ticket price etc.</span>
     </label>
-    <span class="Form_inputDescription" id="form_alternate_text_description">This is a place to type out any important info on the poster, which is a good idea so that everyone can access it. And whatever else you want to write.</span>
     <input type="hidden" name="image" id="uploaded-image-id-input">
-    <button type="submit">Save</button>
+    <button class="Button" type="submit">Post it!</button>
   </form>
 </div>
 <script src="{% static "axios.js" %}"></script>
