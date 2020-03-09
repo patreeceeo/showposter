@@ -5,7 +5,7 @@
 {% block content %}
 <div class="PostDetailPage">
   <div class="PostDetailPage_inner">
-    <img src="/media/{{ post.image.image }}"/>
+    <img src="/media/{{ post.image.image }}" class="PostDetailPage_poster"/>
     <p>{{post.alternate_text | markdown | safe}}</p>
     {% if post.created_by == user %}
     <p>

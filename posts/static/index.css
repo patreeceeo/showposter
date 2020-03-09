@@ -84,14 +84,17 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 2rem;
+}
+@media(max-width: 10in) {
+  .PostDetailPage {
+    margin: 0 1rem 2rem;
+  }
 }
 .PostDetailPage_inner {
   display: inline-block;
 }
 .PostDetailPage .PostDetailPage_poster {
-  object-fit: none;
+  max-width: 100%;
 }
 .PostDetailPage img,
 .PostDetailPage p {
