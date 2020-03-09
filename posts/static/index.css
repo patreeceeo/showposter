@@ -85,6 +85,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+@media(min-width: 10in) {
+  .PostDetailPage {
+    margin: 0 0.5in 2rem;
+  }
+}
 @media(max-width: 10in) {
   .PostDetailPage {
     margin: 0 1rem 2rem;
